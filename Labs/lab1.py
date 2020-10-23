@@ -14,4 +14,9 @@ class FirstLab:
 fl = FirstLab()
 
 # uncomment the following line, play with it
-# print("I can print anywhere I like")
+print("\n\tI can print anywhere I like yooo\n\twassup")
+
+# this is a comment
+
+user_name, user_age= "Neil", 21
+print("\t",user_name, user_age)
