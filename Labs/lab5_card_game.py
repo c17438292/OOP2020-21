@@ -4,13 +4,10 @@
 # date: Oct 2020
 # purpose: Lab 5 - GUI and card game using queue
 
-from tkinter import *
+import random
+from queue import *
+import tkinter as tk
 
-# to use the queue FIFO
-from queue import Queue
-
-# to use the shuffle for shuffling the cards
-from random import shuffle
 
 
 class CardGame():
@@ -27,7 +24,7 @@ class CardGame():
     # used by __init__
     # initialises the GUI window
     def init_window(self):
-        root = Tk()
+        root = tk.Tk()
         root.geometry("300x200")
         root.title("Card Game")
 
@@ -78,18 +75,41 @@ class CardGame():
     # puts everything in a list first as it needs to be shuffled
     # returns a queue
     def load_cards(self):
-        cards = Queue(maxsize=52) #change this if you want to use a different data structure
+        self.cards = Queue(maxsize=52) #change this if you want to use a different data structure
         suits = ("hearts", "diamonds", "spades", "clubs")
         people = ("queen", "jack", "king")
         card_list = []
+        self.deck = []
+
+        for i in range(1, 11):
+            card_list.append(str(i)) #convert the numbers to strings, add 1-10 to deck
+        for p in range (3):
+            card_list.append(people[p]) #add jack queen king to end of deck
+
+        for k in range (4):
+            for j in range (13):
+                card = (card_list[j] + " of " + suits[k])#getting full card and suit
+                self.deck.append(card) #filling the deck now with card and suit
+
+        self.deck = self.shuffle()
+        cards = self.deck
+        print(cards)
+
 
         # your code goes here:
+        return self.deck
 
-        shuffle(card_list)
+    def shuffle(self):
+        for i in range(len(self.deck)-1, 0, -1):#start at the end of the deck and decrement by 1
+            r = random.randint(0, i)
+            self.deck[i], self.deck[r] = self.deck[r], self.deck[i]
+        return self.deck
 
-        # your code goes here:
 
-        return cards
+
+
+
+
 
     # called when clicking on the closed deck of cards
     # picks a new card from the card FIFO
