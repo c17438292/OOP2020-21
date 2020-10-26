@@ -28,7 +28,7 @@ class WordCloud:
             </head>\
             <body>\
             <div style="text-align: center; vertical-align: middle; font-family: arial; color: white; background-color:black; border:1px solid black">')
-
+            <span  style =”font - size: 20px” > hello world < / span >
         # your code goes here!
         fo.write('<span style="font-size: 20px"> HELLO </span>')
 
